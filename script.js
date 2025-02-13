@@ -30,4 +30,4 @@ document.getElementById('contentForm').addEventListener('submit', async function
         messageElement.textContent = 'Erro ao enviar os dados. Tente novamente.';
         messageElement.style.color = 'red';
     }
-});
+});//
