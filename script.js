@@ -7,8 +7,8 @@ document.getElementById('contentForm').addEventListener('submit', async function
     const contentType = document.querySelector('input[name="contentType"]:checked').value;
 
     // Configuração do Supabase
-    const SUPABASE_URL = 'https://gtfxykzxnwubjmcsuedy.supabase.co'; // Substitua pelo seu URL do Supabase
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0Znh5a3p4bnd1YmptY3N1ZWR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0ODE5NDAsImV4cCI6MjA1NTA1Nzk0MH0.lQZHsu2H5SYlnpOBwogZQIPMb48gLBcxs4XC2hpDKgI'; // Substitua pela sua chave do Supabase
+    const SUPABASE_URL = 'https://gtfxykzxnwubjmcsuedy.supabase.co'; // Substitua pelo seu URL
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0Znh5a3p4bnd1YmptY3N1ZWR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0ODE5NDAsImV4cCI6MjA1NTA1Nzk0MH0.lQZHsu2H5SYlnpOBwogZQIPMb48gLBcxs4XC2hpDKgI'; // Substitua pela sua chave
 
     // Envia os dados para o Supabase
     const response = await fetch(`${SUPABASE_URL}/rest/v1/conteudos`, {
@@ -30,4 +30,4 @@ document.getElementById('contentForm').addEventListener('submit', async function
         messageElement.textContent = 'Erro ao enviar os dados. Tente novamente.';
         messageElement.style.color = 'red';
     }
-});//
+});
