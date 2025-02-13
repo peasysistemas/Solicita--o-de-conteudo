@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Conteúdo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Solicitar Conteúdo</h1>
+        <form id="contentForm">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" placeholder="Digite o título" required>
+
+            <label for="contentName">Nome do Conteúdo:</label>
+            <input type="text" id="contentName" name="contentName" placeholder="Digite o nome do conteúdo" required>
+
+            <label>Tipo de Conteúdo:</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="contentType" value="Canais" required> Canais
+                </label>
+                <label>
+                    <input type="radio" name="contentType" value="Filmes"> Filmes
+                </label>
+                <label>
+                    <input type="radio" name="contentType" value="Séries"> Séries
+                </label>
+            </div>
+
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
