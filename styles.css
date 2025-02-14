@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,8 +15,18 @@ body {
     padding: 10px;
 }
 
+.imgtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+.imgtitle img {
+    width: 300px;
+}
+
 .form-container {
-    background-color: white;
+    background-color: rgb(0, 7, 102);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -28,14 +38,14 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
-    color: #333;
+    color: #e4e4e4;
 }
 
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #444;
+    color: #e4e4e4;
 }
 
 input[type="text"] {
@@ -116,7 +126,7 @@ button:hover {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(0, 9, 131);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -147,7 +157,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 10px;
-    background-color: #f4f4f4;
+    background-color: #0becfc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,7 +165,7 @@ body {
 }
 
 .panel-container {
-    background-color: white;
+    background-color: rgb(103, 103, 107);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
