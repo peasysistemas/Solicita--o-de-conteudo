@@ -1,6 +1,6 @@
 // Configura o cliente do Supabase
-const supabaseUrl = 'https://wujbbsaziklpxeyphfel.supabase.co'; // Substitua pelo seu URL
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amJic2F6aWtscHhleXBoZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0OTM5NzEsImV4cCI6MjA1NTA2OTk3MX0.lDt38pHeWax6T0JZG_FtZcrrjPxoqpDsKwJ3j8uajrI'; // Substitua pela sua chave
+const supabaseUrl = 'https://javiwdktsxlfglchpqqb.supabase.co'; // Substitua pelo seu URL
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imphdml3ZGt0c3hsZmdsY2hwcXFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0OTczNDcsImV4cCI6MjA1NTA3MzM0N30.Z4uI0kFPzR6glCOab4Dn5FoAIbb3cFeUBWezrPELgyM'; // Substitua pela sua chave
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Função para enviar os dados do formulário
