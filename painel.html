@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Conteúdos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="panel-container">
+        <h1>📋 Painel de Conteúdos</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Nome do Conteúdo</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody id="contentTableBody">
+                <!-- Os dados serão inseridos aqui pelo JavaScript -->
+            </tbody>
+        </table>
+        <p id="message"></p>
+    </div>
+
+    <!-- Inclui a biblioteca do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="painel.js"></script>
+</body>
+</html>
