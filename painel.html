@@ -14,19 +14,25 @@
                 <tr>
                     <th>ID</th>
                     <th>Título</th>
-                    <th>Nome do Conteúdo</th>
+                    <th>Nome</th>
                     <th>Tipo</th>
                 </tr>
             </thead>
             <tbody id="contentTableBody">
-                <!-- Os dados serão inseridos aqui pelo JavaScript -->
+                <!-- Os conteúdos serão inseridos aqui via JavaScript -->
             </tbody>
         </table>
         <p id="message"></p>
+
+        <!-- Botão para gerar PDF -->
+        <button id="generatePDF">📄 Baixar PDF</button>
     </div>
 
-    <!-- Inclui a biblioteca do Supabase -->
+    <!-- Biblioteca Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Biblioteca jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Script do painel -->
     <script src="painel.js"></script>
 </body>
 </html>

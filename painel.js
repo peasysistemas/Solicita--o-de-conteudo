@@ -1,23 +1,15 @@
 // Aguarda o carregamento do DOM
 document.addEventListener("DOMContentLoaded", async function () {
-    // Inicializa o Supabase
     const supabaseUrl = 'https://wujbbsaziklpxeyphfel.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amJic2F6aWtscHhleXBoZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0OTM5NzEsImV4cCI6MjA1NTA2OTk3MX0.lDt38pHeWax6T0JZG_FtZcrrjPxoqpDsKwJ3j8uajrI';
 
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-    console.log("✅ Supabase conectado!");
-
-    // Captura o elemento da tabela
     const tableBody = document.getElementById("contentTableBody");
     const messageElement = document.getElementById("message");
 
     try {
-        // Busca os conteúdos no Supabase
-        const { data, error } = await supabase
-            .from("conteudos")
-            .select("*");
-
+        const { data, error } = await supabase.from("conteudos").select("*");
         if (error) throw error;
 
         if (data.length === 0) {
@@ -25,7 +17,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-        // Insere os dados na tabela
         data.forEach(content => {
             const row = document.createElement("tr");
             row.innerHTML = `
@@ -42,4 +33,29 @@ document.addEventListener("DOMContentLoaded", async function () {
         messageElement.textContent = "Erro ao carregar os conteúdos.";
         messageElement.style.color = "red";
     }
-});
+
+    // Função para gerar PDF
+    document.getElementById("generatePDF").addEventListener("click", function () {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.setFont("helvetica", "bold");
+        doc.text("📋 Lista de Conteúdos", 20, 10);
+
+        let y = 20;
+        doc.setFont("helvetica", "normal");
+
+        document.querySelectorAll("#contentTableBody tr").forEach((row) => {
+            const columns = row.querySelectorAll("td");
+            if (columns.length > 0) {
+                const id = columns[0].innerText;
+                const title = columns[1].innerText;
+                const name = columns[2].innerText;
+                const type = columns[3].innerText;
+
+                doc.text(`${id} | ${title} | ${name} | ${type}`, 20, y);
+                y += 10;
+            }
+        });
+
+        doc.save("conteudos.pdf");

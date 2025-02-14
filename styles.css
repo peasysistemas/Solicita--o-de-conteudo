@@ -1,144 +1,65 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 10px;
 }
 
-.form-container {
+.panel-container {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
+    text-align: center;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
-    color: #333;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #444;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: 0.3s;
-}
-
-input[type="text"]:focus {
-    border-color: #28a745;
-    outline: none;
-    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-}
-
-/* Estilização dos radio buttons */
-.radio-group {
-    margin-bottom: 15px;
-}
-
-.radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    font-weight: normal;
-}
-
-.radio-group input {
-    transform: scale(1.2);
-}
-
-/* Estilização do botão */
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Mensagem de feedback */
-#message {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-/* Responsividade */
-@media (max-width: 480px) {
-    .form-container {
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-
-    input[type="text"], button {
-        font-size: 14px;
-        padding: 8px;
-    }
-}
-
-.panel-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
 }
 
 th {
-    background-color: #28a745;
+    background-color: #007bff;
     color: white;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+#generatePDF {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#generatePDF:hover {
+    background-color: #0056b3;
+}
+
+#message {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: green;
 }
