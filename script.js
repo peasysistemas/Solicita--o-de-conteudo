@@ -1,10 +1,10 @@
 // Importa a biblioteca do Supabase (se estiver usando npm ou módulos ES6)
-import { createClient } from '@supabase/supabase-js';
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 // Configura o cliente do Supabase
 const supabaseUrl = 'https://wujbbsaziklpxeyphfel.supabase.co'; // Substitua pelo seu URL do Supabase
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amJic2F6aWtscHhleXBoZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0OTM5NzEsImV4cCI6MjA1NTA2OTk3MX0.lDt38pHeWax6T0JZG_FtZcrrjPxoqpDsKwJ3j8uajrI'; // Substitua pela sua chave do Supabase
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey); // Cria o cliente do Supabase
 
 // Função para enviar os dados do formulário
 document.getElementById('contentForm').addEventListener('submit', async function(event) {
