@@ -31,3 +31,9 @@ document.getElementById('contentForm').addEventListener('submit', async function
         messageElement.style.color = 'red';
     }
 });
+
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://gtfxykzxnwubjmcsuedy.supabase.co'
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
