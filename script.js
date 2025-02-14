@@ -2,8 +2,8 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Configura o cliente do Supabase
-const supabaseUrl = 'https://gtfxykzxnwubjmcsuedy.supabase.co'; // Substitua pelo seu URL do Supabase
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0Znh5a3p4bnd1YmptY3N1ZWR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0ODE5NDAsImV4cCI6MjA1NTA1Nzk0MH0.lQZHsu2H5SYlnpOBwogZQIPMb48gLBcxs4XC2hpDKgI'; // Substitua pela sua chave do Supabase
+const supabaseUrl = 'https://wujbbsaziklpxeyphfel.supabase.co'; // Substitua pelo seu URL do Supabase
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amJic2F6aWtscHhleXBoZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0OTM5NzEsImV4cCI6MjA1NTA2OTk3MX0.lDt38pHeWax6T0JZG_FtZcrrjPxoqpDsKwJ3j8uajrI'; // Substitua pela sua chave do Supabase
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Função para enviar os dados do formulário
