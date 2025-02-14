@@ -59,3 +59,5 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
         doc.save("conteudos.pdf");
+    });
+});
