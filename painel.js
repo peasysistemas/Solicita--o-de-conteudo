@@ -1,4 +1,3 @@
-// Aguarda o carregamento do DOM
 document.addEventListener("DOMContentLoaded", async function () {
     const supabaseUrl = 'https://wujbbsaziklpxeyphfel.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amJic2F6aWtscHhleXBoZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0OTM5NzEsImV4cCI6MjA1NTA2OTk3MX0.lDt38pHeWax6T0JZG_FtZcrrjPxoqpDsKwJ3j8uajrI';
@@ -38,22 +37,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.getElementById("generatePDF").addEventListener("click", function () {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-
-        doc.setFont("helvetica", "bold");
         doc.text("📋 Lista de Conteúdos", 20, 10);
-
         let y = 20;
-        doc.setFont("helvetica", "normal");
 
         document.querySelectorAll("#contentTableBody tr").forEach((row) => {
             const columns = row.querySelectorAll("td");
             if (columns.length > 0) {
-                const id = columns[0].innerText;
-                const title = columns[1].innerText;
-                const name = columns[2].innerText;
-                const type = columns[3].innerText;
-
-                doc.text(`${id} | ${title} | ${name} | ${type}`, 20, y);
+                doc.text(`${columns[0].innerText} | ${columns[1].innerText} | ${columns[2].innerText} | ${columns[3].innerText}`, 20, y);
                 y += 10;
             }
         });

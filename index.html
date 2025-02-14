@@ -9,7 +9,7 @@
 <body>
     <div class="form-container">
         <h1>Solicitar Conteúdo</h1>
-        <form id="contentForm" autocomplete="off">
+        <form id="contentForm">
             <label for="title">Título:</label>
             <input type="text" id="title" name="title" placeholder="Digite o título" required>
 
@@ -31,12 +31,14 @@
 
             <button type="submit">Enviar</button>
         </form>
-        <p id="message"></p> <!-- Mensagem de feedback -->
-    </div>
-    
-    <!-- Inclui a biblioteca do Supabase ANTES do seu script -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js" defer></script>
+        <p id="message"></p>
 
+        <!-- Botão para acessar o painel -->
+        <a href="painel.html" class="panel-button">📊 Acessar Painel</a>
+    </div>
+
+    <!-- Inclui a biblioteca do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
 </body>
 </html>
