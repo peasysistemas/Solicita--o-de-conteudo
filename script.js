@@ -1,10 +1,7 @@
-// Importa a biblioteca do Supabase (se estiver usando npm ou módulos ES6)
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 // Configura o cliente do Supabase
-const supabaseUrl = 'https://wujbbsaziklpxeyphfel.supabase.co'; // Substitua pelo seu URL do Supabase
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amJic2F6aWtscHhleXBoZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0OTM5NzEsImV4cCI6MjA1NTA2OTk3MX0.lDt38pHeWax6T0JZG_FtZcrrjPxoqpDsKwJ3j8uajrI'; // Substitua pela sua chave do Supabase
-const supabase = createClient(supabaseUrl, supabaseKey); // Cria o cliente do Supabase
+const supabaseUrl = 'https://wujbbsaziklpxeyphfel.supabase.co'; // Substitua pelo seu URL
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amJic2F6aWtscHhleXBoZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0OTM5NzEsImV4cCI6MjA1NTA2OTk3MX0.lDt38pHeWax6T0JZG_FtZcrrjPxoqpDsKwJ3j8uajrI'; // Substitua pela sua chave
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Função para enviar os dados do formulário
 document.getElementById('contentForm').addEventListener('submit', async function(event) {
@@ -17,8 +14,8 @@ document.getElementById('contentForm').addEventListener('submit', async function
 
     // Envia os dados para o Supabase
     const { data, error } = await supabase
-        .from('conteudos') // Nome da tabela no Supabase
-        .insert([{ title, contentName, contentType }]); // Insere os dados na tabela
+        .from('conteudos') // Nome da tabela
+        .insert([{ title, contentName, contentType }]); // Insere os dados
 
     // Exibe uma mensagem para o usuário
     const messageElement = document.getElementById('message');
