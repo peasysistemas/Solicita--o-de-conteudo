@@ -1,49 +1,68 @@
-// Aguarda o carregamento completo do DOM antes de executar o script
-document.addEventListener("DOMContentLoaded", async function () {
-    // Inicializa o cliente do Supabase
-    const supabaseUrl = 'https://wujbbsaziklpxeyphfel.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amJic2F6aWtscHhleXBoZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0OTM5NzEsImV4cCI6MjA1NTA2OTk3MX0.lDt38pHeWax6T0JZG_FtZcrrjPxoqpDsKwJ3j8uajrI';
-
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-    console.log("✅ Supabase inicializado com sucesso!");
-
-    // Captura o formulário e a mensagem de feedback
+document.addEventListener("DOMContentLoaded", function () {
+    // Captura o formulário e o elemento de mensagem
     const form = document.getElementById("contentForm");
     const messageElement = document.getElementById("message");
 
-    // Adiciona evento ao formulário
+    // Adiciona um listener para o evento de submit do formulário
     form.addEventListener("submit", async function (event) {
-        event.preventDefault(); // Impede o recarregamento da página
+        event.preventDefault(); // Impede o comportamento padrão de recarregar a página
 
-        // Captura os valores do formulário
+        // Captura os valores dos campos do formulário
         const title = document.getElementById("title").value.trim();
         const contentName = document.getElementById("contentName").value.trim();
         const contentType = document.querySelector('input[name="contentType"]:checked')?.value;
 
-        // Validação simples dos campos
+        // Validação dos campos
         if (!title || !contentName || !contentType) {
             messageElement.textContent = "⚠️ Preencha todos os campos!";
             messageElement.style.color = "red";
-            return;
+            return; // Interrompe a execução se algum campo estiver vazio
         }
 
         try {
-            // Envia os dados para o Supabase
-            const { data, error } = await supabase
-                .from("conteudos") // Nome da tabela no Supabase
-                .insert([{ title, contentName, contentType }]);
+            // Envia os dados para o backend usando fetch
+            const response = await fetch('backend/salvar.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `title=${encodeURIComponent(title)}&contentName=${encodeURIComponent(contentName)}&contentType=${encodeURIComponent(contentType)}`
+            });
 
-            if (error) throw error; // Se houver erro, lança exceção
+            // Verifica a resposta do backend
+            const result = await response.text();
 
-            // Exibe mensagem de sucesso e limpa o formulário
-            messageElement.textContent = "✅ Dados enviados com sucesso! 🎉";
-            messageElement.style.color = "green";
-            form.reset(); // Limpa os campos do formulário
+            // Exibe uma mensagem de sucesso ou erro com base na resposta
+            if (result.includes("✅")) {
+                messageElement.textContent = "✅ Dados enviados com sucesso! 🎉";
+                messageElement.style.color = "green";
+                form.reset(); // Limpa o formulário após o envio bem-sucedido
+            } else {
+                messageElement.textContent = "❌ Erro ao enviar os dados.";
+                messageElement.style.color = "red";
+            }
         } catch (error) {
-            console.error("❌ Erro ao enviar os dados:", error.message);
+            // Captura e exibe erros de rede ou outros problemas
+            console.error("❌ Erro ao enviar os dados:", error);
             messageElement.textContent = "❌ Erro ao enviar os dados. Tente novamente.";
             messageElement.style.color = "red";
         }
     });
 });
+const submitButton = form.querySelector('button[type="submit"]');
+submitButton.disabled = true;
+submitButton.textContent = "Enviando...";
+
+// No final do bloco try/catch, reative o botão
+submitButton.disabled = false;
+submitButton.textContent = "Enviar";
+
+const result = await response.json(); // Supondo que o backend retorne JSON
+if (result.success) {
+    messageElement.textContent = "✅ " + result.message;
+    messageElement.style.color = "green";
+    form.reset();
+} else {
+    messageElement.textContent = "❌ " + result.message;
+    messageElement.style.color = "red";
+}

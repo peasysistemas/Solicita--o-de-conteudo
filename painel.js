@@ -1,22 +1,28 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const supabaseUrl = 'https://wujbbsaziklpxeyphfel.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amJic2F6aWtscHhleXBoZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0OTM5NzEsImV4cCI6MjA1NTA2OTk3MX0.lDt38pHeWax6T0JZG_FtZcrrjPxoqpDsKwJ3j8uajrI';
-
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
     const tableBody = document.getElementById("contentTableBody");
     const messageElement = document.getElementById("message");
 
     try {
-        const { data, error } = await supabase.from("conteudos").select("*");
-        if (error) throw error;
+        // Faz a requisição para o backend
+        const response = await fetch('backend/listar.php');
+        const result = await response.json(); // Processa a resposta como JSON
 
-        if (data.length === 0) {
+        // Verifica se a resposta é válida
+        if (!result.success || !Array.isArray(result.data)) {
+            throw new Error("Erro ao processar os dados.");
+        }
+
+        // Limpa a tabela antes de adicionar novos dados
+        tableBody.innerHTML = '';
+
+        // Verifica se há dados para exibir
+        if (result.data.length === 0) {
             messageElement.textContent = "Nenhum conteúdo encontrado.";
             return;
         }
 
-        data.forEach(content => {
+        // Adiciona os dados na tabela
+        result.data.forEach((content) => {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${content.id}</td>
@@ -28,26 +34,60 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
     } catch (error) {
-        console.error("❌ Erro ao buscar dados:", error.message);
-        messageElement.textContent = "Erro ao carregar os conteúdos.";
+        console.error("❌ Erro ao buscar dados:", error);
+        messageElement.textContent = error.message; // Exibe a mensagem de erro
         messageElement.style.color = "red";
     }
 
-    // Função para gerar PDF
-    document.getElementById("generatePDF").addEventListener("click", function () {
+    // Gerar PDF
+    const generatePDFButton = document.getElementById("generatePDF");
+    generatePDFButton.addEventListener("click", function () {
+        // Garante que jsPDF está disponível
+        if (!window.jspdf) {
+            alert("Erro: jsPDF não foi carregado corretamente!");
+            return;
+        }
+
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-        doc.text("📋 Lista de Conteúdos", 20, 10);
-        let y = 20;
 
-        document.querySelectorAll("#contentTableBody tr").forEach((row) => {
-            const columns = row.querySelectorAll("td");
-            if (columns.length > 0) {
-                doc.text(`${columns[0].innerText} | ${columns[1].innerText} | ${columns[2].innerText} | ${columns[3].innerText}`, 20, y);
-                y += 10;
-            }
+        // Título do relatório
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(16);
+        doc.text("📋 Relatório de Solicitações", 14, 20);
+
+        // Captura os dados da tabela
+        const tableBody = document.getElementById("contentTableBody");
+        if (!tableBody || tableBody.children.length === 0) {
+            alert("⚠️ Nenhum dado disponível para gerar o PDF.");
+            return;
+        }
+
+        const rows = [];
+        tableBody.querySelectorAll("tr").forEach(row => {
+            const rowData = [];
+            row.querySelectorAll("td").forEach(cell => {
+                rowData.push(cell.textContent.trim());
+            });
+            rows.push(rowData);
         });
 
-        doc.save("conteudos.pdf");
+        // Adiciona a tabela ao PDF com estilos
+        if (doc.autoTable) {
+            doc.autoTable({
+                startY: 30,
+                head: [["ID", "Título", "Nome", "Tipo"]],
+                body: rows,
+                theme: "striped",
+                styles: { fontSize: 12, cellPadding: 3 },
+                headStyles: { fillColor: [22, 160, 133], textColor: [255, 255, 255] },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+            });
+
+            // Salva o PDF
+            doc.save("relatorio_solicitacoes.pdf");
+        } else {
+            alert("Erro: autoTable não foi carregado corretamente!");
+        }
     });
 });

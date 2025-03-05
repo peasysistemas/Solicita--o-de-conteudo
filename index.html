@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="form-container">
-        <div class="imgtitle"><img src="/image/logopeasynovasemefeito.png" alt="" srcset=""></div>
+        <div class="imgtitle"><img src="/image/logopeasynovasemefeito.png" alt="Logo da Empresa" srcset=""></div>
         <h1>Solicitar Conteúdo</h1>
         <form id="contentForm">
             <label for="title">Nome do cliente:</label>
@@ -19,27 +19,21 @@
 
             <label>Tipo de Conteúdo:</label>
             <div class="radio-group">
-                <label>
-                    <input type="radio" name="contentType" value="Canais" required> Canais
+                <label for="canais">
+                    <input type="radio" id="canais" name="contentType" value="Canais" required> Canais
                 </label>
-                <label>
-                    <input type="radio" name="contentType" value="Filmes"> Filmes
+                <label for="filmes">
+                    <input type="radio" id="filmes" name="contentType" value="Filmes"> Filmes
                 </label>
-                <label>
-                    <input type="radio" name="contentType" value="Séries"> Séries
+                <label for="series">
+                    <input type="radio" id="series" name="contentType" value="Séries"> Séries
                 </label>
             </div>
 
             <button type="submit">Enviar</button>
         </form>
         <p id="message"></p>
-
-        <!-- Botão para acessar o painel 
-        <a href="painel.html" class="panel-button">📊 Acessar Painel</a>-->
     </div>
-
-    <!-- Inclui a biblioteca do Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
 </html>
